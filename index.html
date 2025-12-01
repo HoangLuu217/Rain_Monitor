@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VN Rainfall Monitor</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-      crossorigin=""
-    />
+    
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <style>
       /* Custom scrollbar for webkit */
       ::-webkit-scrollbar {
@@ -27,10 +26,38 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #94a3b8; 
       }
+      
+      /* Map Styles */
+      .leaflet-popup-content-wrapper {
+        border-radius: 8px;
+        padding: 0;
+        overflow: hidden;
+      }
+      .leaflet-popup-content {
+        margin: 0;
+        width: auto !important;
+      }
       .leaflet-container {
-        width: 100%;
-        height: 100%;
-        z-index: 0;
+        background-color: #aadaff; /* Match Google Maps water color */
+        font-family: inherit;
+      }
+      
+      /* Sovereignty Label Styles */
+      .sovereignty-label {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+      }
+      .sovereignty-text {
+        color: #DC2626; /* Red-600 */
+        font-weight: 900;
+        font-family: Arial, sans-serif;
+        text-transform: uppercase;
+        text-align: center;
+        white-space: nowrap;
+        text-shadow: 
+          2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
+          1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
       }
     </style>
   <script type="importmap">
@@ -40,9 +67,7 @@
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
     "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-leaflet": "https://aistudiocdn.com/react-leaflet@^5.0.0",
-    "leaflet": "https://aistudiocdn.com/leaflet@^1.9.4"
+    "react": "https://aistudiocdn.com/react@^19.2.0"
   }
 }
 </script>
