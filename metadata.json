@@ -1,0 +1,5 @@
+{
+  "name": "VN Rainfall Monitor",
+  "description": "A comprehensive rainfall and water level monitoring system for Vietnam, featuring interactive maps, sensor data visualization, and AI-powered flood risk analysis.",
+  "requestFramePermissions": []
+}
