@@ -57,9 +57,6 @@ const SensorMap: React.FC<SensorMapProps> = ({ sensors, selectedSensorId, onSele
     // 4. Add RainViewer Radar Layer
     addRainLayer(map, L);
 
-    // 5. Add Sovereignty Labels
-    addSovereigntyLabels(map, L);
-
     // Cleanup
     return () => {
       map.remove();
@@ -87,37 +84,6 @@ const SensorMap: React.FC<SensorMapProps> = ({ sensors, selectedSensorId, onSele
     } catch (e) {
       console.warn("Could not load RainViewer layer:", e);
     }
-  };
-
-  // Add Custom Sovereignty Labels
-  const addSovereigntyLabels = (map: any, L: any) => {
-    const labels = [
-      { text: "QUẦN ĐẢO HOÀNG SA", sub: "(VIỆT NAM)", lat: 16.5, lng: 111.6, size: '20px' },
-      { text: "QUẦN ĐẢO TRƯỜNG SA", sub: "(VIỆT NAM)", lat: 10.5, lng: 115.0, size: '20px' },
-      { text: "BIỂN ĐÔNG", sub: "", lat: 14.5, lng: 113.0, size: '32px' }
-    ];
-
-    labels.forEach(label => {
-      const html = `
-        <div class="sovereignty-text" style="font-size: ${label.size};">
-          ${label.text}
-          ${label.sub ? `<div style="font-size: 0.6em; margin-top: 2px;">${label.sub}</div>` : ''}
-        </div>
-      `;
-      
-      const icon = L.divIcon({
-        html: html,
-        className: 'sovereignty-label',
-        iconSize: [400, 50],
-        iconAnchor: [200, 25] // Center anchor
-      });
-
-      L.marker([label.lat, label.lng], { 
-        icon: icon, 
-        interactive: false,
-        zIndexOffset: -100 // Keep below interactive markers
-      }).addTo(map);
-    });
   };
 
   // Update Sensor Markers

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import SensorMap from './components/SensorMap';
 import SensorList from './components/SensorList';
-import AiReport from './components/AiReport';
 import { ViewMode, SensorData } from './types';
 import { MOCK_SENSORS } from './constants';
 
@@ -38,17 +37,12 @@ function App() {
             </div>
             
             {/* Sidebar with Analysis and List */}
-            <div className="lg:col-span-4 h-full flex flex-col gap-4 overflow-hidden">
-               <div className="flex-shrink-0 max-h-[40%]">
-                 <AiReport sensors={sensors} />
-               </div>
-               <div className="flex-1 min-h-0">
-                 <SensorList 
-                    sensors={sensors} 
-                    onSelectSensor={handleSelectSensor} 
-                    selectedSensorId={selectedSensorId}
-                  />
-               </div>
+            <div className="lg:col-span-4 h-full">
+              <SensorList 
+                sensors={sensors} 
+                onSelectSensor={handleSelectSensor} 
+                selectedSensorId={selectedSensorId}
+              />
             </div>
           </div>
         )}
@@ -60,21 +54,14 @@ function App() {
                 selectedSensorId={selectedSensorId}
                 onSelectSensor={handleSelectSensor}
               />
-              {/* Floating AI Action for Map Only View */}
-              <div className="absolute top-4 right-4 z-[500] w-72">
-                 <AiReport sensors={sensors} />
-              </div>
           </div>
         )}
 
         {view === 'list' && (
           <div className="h-full max-w-5xl mx-auto">
              <div className="h-full flex flex-col gap-4">
-               <div className="h-auto">
-                 <AiReport sensors={sensors} />
-               </div>
                <div className="flex-1 min-h-0">
-                <SensorList 
+                 <SensorList 
                     sensors={sensors} 
                     onSelectSensor={handleSelectSensor} 
                     selectedSensorId={selectedSensorId}
